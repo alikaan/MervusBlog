@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MervusBlog_API", "MervusBlog_API\MervusBlog_API.csproj", "{57C377B2-53ED-49A4-B151-7121D2350465}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57C377B2-53ED-49A4-B151-7121D2350465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C377B2-53ED-49A4-B151-7121D2350465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C377B2-53ED-49A4-B151-7121D2350465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C377B2-53ED-49A4-B151-7121D2350465}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {03DD161E-A630-41C3-AE17-60F30CD5355E}
+	EndGlobalSection
+EndGlobal
