@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 builder.Services.AddControllers();

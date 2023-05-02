@@ -11,6 +11,7 @@ namespace MervusBlog_API.Models
         public int Id { get; set; }
 		[ForeignKey("Author")]
 		public int AuthorId { get; set; }
+		public int CategoryId { get; set; }
 		public string Title { get; set; }
 		public string Summary { get; set; }
 		public bool IsPublished { get; set; }

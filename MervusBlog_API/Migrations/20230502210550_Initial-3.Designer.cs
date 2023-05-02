@@ -3,6 +3,7 @@ using System;
 using MervusBlog_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MervusBlog_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230502210550_Initial-3")]
+    partial class Initial3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +67,7 @@ namespace MervusBlog_API.Migrations
                             Mobile = "+905542985313",
                             NickName = "Kaan",
                             Profile = "Engineer",
-                            UpdatedDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(860)
+                            UpdatedDate = new DateTime(2023, 5, 2, 21, 5, 50, 467, DateTimeKind.Utc).AddTicks(5700)
                         },
                         new
                         {
@@ -74,7 +77,7 @@ namespace MervusBlog_API.Migrations
                             Mobile = "+905542985313",
                             NickName = "Mervus",
                             Profile = "Manager",
-                            UpdatedDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(870)
+                            UpdatedDate = new DateTime(2023, 5, 2, 21, 5, 50, 467, DateTimeKind.Utc).AddTicks(5710)
                         });
                 });
 
@@ -177,13 +180,13 @@ namespace MervusBlog_API.Migrations
                             AuthorId = 1,
                             CategoryId = 1,
                             Content = "Quantum physics is the study of the behavior of matter and energy at the subatomic level. It is a field that explores the strange and fascinating world of particles, waves, and probabilities. In this world, particles can exist in multiple places at once, and their behavior is influenced by the act of observation.\n\nOne of the most significant concepts in quantum physics is superposition, which describes how particles can exist in multiple states simultaneously. This phenomenon is demonstrated by the famous Schrödinger's cat thought experiment, which explores the idea of a cat being in a state of being both alive and dead at the same time.\n\nAnother crucial concept is entanglement, where particles become connected in such a way that the state of one particle is dependent on the state of the other, regardless of the distance between them. This phenomenon has the potential to revolutionize the way we communicate and process information.\n\nQuantum physics is a fascinating and rapidly evolving field that continues to challenge our understanding of the universe. Its applications have the potential to revolutionize the world of computing, communication, and energy.",
-                            CreatedDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(900),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             IsPublished = true,
-                            PublishedDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(900),
+                            PublishedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Summary = "This blog post is an introduction to the world of quantum physics, which explores the behavior of matter and energy at the subatomic level. The post discusses two of the most significant concepts in quantum physics: superposition and entanglement. It also highlights the potential applications of quantum physics, including revolutionizing the way we communicate, process information, and harness energy. The post concludes by emphasizing the importance of quantum physics in challenging our understanding of the universe and unlocking its mysteries. The title \"Exploring the Strange and Fascinating World of Quantum Physics\" captures the essence of the blog post, which aims to provide a brief yet engaging overview of this exciting field.",
                             Title = "Exploring the Strange and Fascinating World of Quantum Physics",
-                            UpdatedDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(900)
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -290,8 +293,8 @@ namespace MervusBlog_API.Migrations
                             LastName = "TURKMEN",
                             Mobile = "+905063694208",
                             Password = "admin",
-                            RegisteredDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(800),
-                            UpdatedDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(800)
+                            RegisteredDate = new DateTime(2023, 5, 2, 21, 5, 50, 467, DateTimeKind.Utc).AddTicks(5650),
+                            UpdatedDate = new DateTime(2023, 5, 2, 21, 5, 50, 467, DateTimeKind.Utc).AddTicks(5650)
                         },
                         new
                         {
@@ -303,8 +306,8 @@ namespace MervusBlog_API.Migrations
                             MiddleName = "Kaan",
                             Mobile = "+905542985313",
                             Password = "admin",
-                            RegisteredDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(850),
-                            UpdatedDate = new DateTime(2023, 5, 2, 21, 8, 17, 766, DateTimeKind.Utc).AddTicks(850)
+                            RegisteredDate = new DateTime(2023, 5, 2, 21, 5, 50, 467, DateTimeKind.Utc).AddTicks(5670),
+                            UpdatedDate = new DateTime(2023, 5, 2, 21, 5, 50, 467, DateTimeKind.Utc).AddTicks(5670)
                         });
                 });
 #pragma warning restore 612, 618

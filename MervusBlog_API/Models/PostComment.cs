@@ -11,7 +11,6 @@ namespace MervusBlog_API.Models
         public int Id { get; set; }
 		[ForeignKey("Post")]
 		public int PostId { get; set; }
-		public string Title { get; set; }
 		public bool IsPublished { get; set; }
 		public DateTime CreatedDate { get; set; }
 		public DateTime PublishedDate { get; set; }
