@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using MervusBlog_API.Models;
+﻿using MervusBlog_API.Models;
 
 namespace MervusBlog_API.Repository.IRepository
 {

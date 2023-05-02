@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using AutoMapper;
 using MervusBlog_API.Models;
 using MervusBlog_API.Models.Dto;
@@ -11,17 +8,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MervusBlog_API.Controllers
 {
-    [Route("api/author")]
+    [Route("api/user")]
     [ApiController]
-    public class AuthorController : ControllerBase
-    {
-        private readonly IAuthorRepository _dbAuthor;
+    public class UserController : ControllerBase
+	{
+        private readonly IUserRepository _dbUser;
         private readonly IMapper _mapper;
         protected APIResponse _response;
 
-        public AuthorController(IAuthorRepository dbAuthor, IMapper mapper)
-        {
-            _dbAuthor = dbAuthor;
+        public UserController(IUserRepository dbUser, IMapper mapper)
+		{
+            _dbUser = dbUser;
             _mapper = mapper;
             this._response = new();
         }
@@ -29,12 +26,12 @@ namespace MervusBlog_API.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<APIResponse>> GetAuthors()
+        public async Task<ActionResult<APIResponse>> GetUsers()
         {
             try
             {
-                IEnumerable<Author> authorList = await _dbAuthor.GetAllAsync();
-                _response.Result = _mapper.Map<List<AuthorDTO>>(authorList);
+                IEnumerable<User> userList = await _dbUser.GetAllAsync();
+                _response.Result = _mapper.Map<List<UserDTO>>(userList);
                 _response.StatusCode = HttpStatusCode.OK;
             }
             catch (Exception ex)
@@ -46,10 +43,10 @@ namespace MervusBlog_API.Controllers
             return Ok(_response);
         }
 
-        [HttpGet("{id:int}", Name = "GetAuthor")]
+        [HttpGet("{id:int}", Name = "GetUser")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<APIResponse>> GetAuthor(int id)
+        public async Task<ActionResult<APIResponse>> GetUser(int id)
         {
             try
             {
@@ -58,13 +55,13 @@ namespace MervusBlog_API.Controllers
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     return BadRequest(_response);
                 }
-                var author = await _dbAuthor.GetAsync(u => u.Id == id);
-                if (author == null)
+                var user = await _dbUser.GetAsync(u => u.Id == id);
+                if (user == null)
                 {
                     _response.StatusCode = HttpStatusCode.NotFound;
                     return NotFound(_response);
                 }
-                _response.Result = _mapper.Map<AuthorDTO>(author);
+                _response.Result = _mapper.Map<UserDTO>(user);
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);
             }
@@ -80,29 +77,29 @@ namespace MervusBlog_API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<APIResponse>> CreateAuthor([FromBody]AuthorCreateDTO createDTO)
+        public async Task<ActionResult<APIResponse>> Register([FromBody] UserCreateDTO createDTO)
         {
             try
             {
-                if (await _dbAuthor.GetAsync(u => u.NickName.ToLower() == createDTO.NickName.ToLower()) != null)
+                if (await _dbUser.GetAsync(u => u.Email.ToLower() == createDTO.Email.ToLower()) != null)
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     _response.IsSuccess = false;
                     return BadRequest(_response);
                 }
-                if(createDTO == null)
+                if (createDTO == null)
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     _response.IsSuccess = false;
                     return BadRequest(_response);
                 }
 
-                Author author = _mapper.Map<Author>(createDTO);
-                await _dbAuthor.CreateAsync(author);
-                _response.Result = _mapper.Map<AuthorDTO>(author);
+                User user = _mapper.Map<User>(createDTO);
+                await _dbUser.Register(user);
+                _response.Result = _mapper.Map<UserDTO>(user);
                 _response.StatusCode = HttpStatusCode.Created;
 
-                return CreatedAtRoute("GetAuthor", new { id = author.Id }, _response);
+                return CreatedAtRoute("GetUser", new { id = user.Id }, _response);
             }
             catch (Exception ex)
             {
@@ -112,11 +109,11 @@ namespace MervusBlog_API.Controllers
             return _response;
         }
 
-        [HttpDelete("{id:int}", Name = "DeleteAuthor")]
+        [HttpDelete("{id:int}", Name = "DeleteUser")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<APIResponse>> DeleteAuthor(int id)
+        public async Task<ActionResult<APIResponse>> DeleteUser(int id)
         {
             try
             {
@@ -126,16 +123,16 @@ namespace MervusBlog_API.Controllers
                     _response.IsSuccess = false;
                     return BadRequest(_response);
                 }
-                var author = await _dbAuthor.GetAsync(u => u.Id == id);
+                var user = await _dbUser.GetAsync(u => u.Id == id);
 
-                if (author == null)
+                if (user == null)
                 {
                     _response.StatusCode = HttpStatusCode.NotFound;
                     _response.IsSuccess = false;
                     return NotFound(_response);
                 }
 
-                await _dbAuthor.RemoveAsync(author);
+                await _dbUser.RemoveAsync(user);
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
                 return Ok(_response);

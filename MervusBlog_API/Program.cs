@@ -1,4 +1,5 @@
-﻿using MervusBlog_API.Data;
+﻿using MervusBlog_API;
+using MervusBlog_API.Data;
 using MervusBlog_API.Repository;
 using MervusBlog_API.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 builder.Services.AddControllers();
 
