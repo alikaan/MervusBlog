@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>bf7b282f-9be7-43a5-8b11-a2fc39043000</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
@@ -34,6 +36,7 @@
     <None Remove="Repository\" />
     <None Remove="Repository\IRepository\" />
     <None Remove="Models\Dto\" />
+    <None Remove="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -42,5 +45,6 @@
     <Folder Include="Repository\" />
     <Folder Include="Repository\IRepository\" />
     <Folder Include="Models\Dto\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
 </Project>

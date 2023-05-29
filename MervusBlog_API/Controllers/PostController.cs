@@ -73,6 +73,77 @@ namespace MervusBlog_API.Controllers
             }
             return _response;
         }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<APIResponse>> CreatePost([FromBody] PostCreateDTO createDTO)
+        {
+            try
+            {
+                if (await _dbPost.GetAsync(u => u.Title.ToLower() == createDTO.Title.ToLower()) != null)
+                {
+                    _response.StatusCode = HttpStatusCode.BadRequest;
+                    _response.IsSuccess = false;
+                    return BadRequest(_response);
+                }
+                if (createDTO == null)
+                {
+                    _response.StatusCode = HttpStatusCode.BadRequest;
+                    _response.IsSuccess = false;
+                    return BadRequest(_response);
+                }
+
+                Post post = _mapper.Map<Post>(createDTO);
+                await _dbPost.CreateAsync(post);
+                _response.Result = _mapper.Map<CategoryDTO>(post);
+                _response.StatusCode = HttpStatusCode.Created;
+
+                return CreatedAtRoute("GetPost", new { id = post.Id }, _response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages.Add(ex.ToString());
+            }
+            return _response;
+        }
+
+        [HttpDelete("{id:int}", Name = "DeletePost")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<APIResponse>> DeletePost(int id)
+        {
+            try
+            {
+                if (id == 0)
+                {
+                    _response.StatusCode = HttpStatusCode.BadRequest;
+                    _response.IsSuccess = false;
+                    return BadRequest(_response);
+                }
+                var post = await _dbPost.GetAsync(u => u.Id == id);
+
+                if (post == null)
+                {
+                    _response.StatusCode = HttpStatusCode.NotFound;
+                    _response.IsSuccess = false;
+                    return NotFound(_response);
+                }
+
+                await _dbPost.RemoveAsync(post);
+                _response.StatusCode = HttpStatusCode.NoContent;
+                _response.IsSuccess = true;
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages.Add(ex.ToString());
+            }
+            return _response;
+        }
     }
 }
 

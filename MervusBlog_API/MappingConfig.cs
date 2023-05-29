@@ -16,6 +16,7 @@ namespace MervusBlog_API
 			CreateMap<User, UserCreateDTO>().ReverseMap();
 
 			CreateMap<Category, CategoryDTO>().ReverseMap();
+			CreateMap<Category, CategoryCreateDTO>().ReverseMap();
 
 			CreateMap<Post, PostDTO>().ReverseMap();
         }
